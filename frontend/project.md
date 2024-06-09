@@ -3,15 +3,15 @@
 - [x] Create a new JavaScript project. You can use plain JavaScript, or any framework/library you prefer (e.g., Node.js, React, Vue, etc.).
 - [x] Use a package manager like npm or yarn to manage dependencies.
 ## Data Structure
-- [ ] Create a data structure to represent patients. Each patient should have the following attributes:
-    - [ ] Patient ID (unique identifier)
-    - [ ] First Name
-    - [ ] Last Name
-    - [ ] Date of Birth
-    - [ ] Gender
-    - [ ] Admission Date
-    - [ ] Discharge Date (nullable)
-    - [ ] Current Bed
+- [x] Create a data structure to represent patients. Each patient should have the following attributes:
+    - [x] Patient ID (unique identifier)
+    - [x] First Name
+    - [x] Last Name
+    - [x] Date of Birth
+    - [x] Gender
+    - [x] Admission Date
+    - [x] Discharge Date (nullable)
+    - [x] Current Bed
 ## Event Handling
 - [ ] implement event handlers for the following ADT events:
     - [ ] Admission: Adds a new patient to the system.
@@ -24,7 +24,7 @@
     - [ ] Add a new patient (Admission)
     - [ ] Discharge a patient
     - [ ] Transfer a patient to a different Bed
-    - [ ] View a list of all patients with their current status
+    - [x] View a list of all patients with their current status
 ## Error Handling
 - [ ] Implement basic error handling to manage invalid inputs or actions, such as attempting to discharge a non-existent patient.
 
@@ -33,7 +33,14 @@
 - [ ] README file with: Setup instructions, Description of the project, Instructions on how to use the system
 - [ ] A short video (3-5 minutes) demonstrating the functionality of the system
 
-# Questions:
-1. Can I add extra attributes to the patient data structure? (e.g. status)
-2. Can I use database to store the data?
-3. How to represent the current bed? Can I use a unique integer?
+# Error cases:
+- [ ] empty patient attributes: patient ID, First Name, Last Name, Date of Birth, Gender, Admission Date
+- [ ] duplicate patient attributes: patient ID, current bed
+- [ ] invalid patient attributes: 
+    - [ ]: non-string values for first name / last name
+    - [ ]: Date of Birth > today
+    - [ ]: Admission Date > today
+    - [ ]: Discharge Date > today
+    - [ ]: Discharge Date < Admission Date
+    - [ ]: current bed is not null while patient is discharged.
+- [ ] attempt to discharge/transfer a patient who does not exist / discharged.

@@ -37,7 +37,7 @@
         "dateOfBirth": "1985-11-12",
         "gender": "Male",
         "admissionDate": "2024-06-04",
-        "dischargeDate": null,
+        "dischargeDate": "2024-06-04",
         "currentBed": "D404"
       },
       {

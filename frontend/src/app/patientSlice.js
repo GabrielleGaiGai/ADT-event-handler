@@ -1,18 +1,5 @@
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 import dayjs from "dayjs";
-const fs = require("fs");
-
-fs.readFile("./patients.json", (error, data) => {
-    if (error) {
-        console.error(error)
-        throw error
-    }
-    console.log(JSON.parse(data))
-});
-
-const patientData = require('./patients.json');
-console.log(typeof patientData)
-
 
 const patientsAdapter = createEntityAdapter({
     selectId: (patient) => patient.patientId,
@@ -25,26 +12,29 @@ const patientsAdapter = createEntityAdapter({
             return 0
         }
     }
-}
-)
+})
 
-
-const bedList = patientData.patients.map((patient) => patient.currentBed)
-const preLoadedState = patientsAdapter.setAll(patientsAdapter.getInitialState({ bedList }), patientData.patients)
 
 export const patientSlice = createSlice({
     name: 'patient',
-    initialState: preLoadedState,
+    initialState: patientsAdapter.getInitialState({ bedList: [] }),
     reducers: {
-        PatientAdded(state, action) {
+        AddPatient(state, action) {
             patientsAdapter.addOne(state, action.payload)
+            state.bedList.push(action.payload)
+        },
+        SetPatients(state, action) {
+            const patientData = action.payload
+            patientsAdapter.setAll(state, patientData)
+            const bedList = patientData.map((patient) => patient.currentBed)
+            state.bedList = bedList
         }
     }
 })
 
 export default patientSlice.reducer
 
-export const { PatientAdded } = patientSlice.actions
+export const { AddPatient, SetPatients } = patientSlice.actions
 
 export const {
     selectById: selectPatientById,

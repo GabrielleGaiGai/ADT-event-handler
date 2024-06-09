@@ -1,0 +1,54 @@
+{
+    "patients": [
+        {
+            "patientId": "P001",
+            "firstName": "John",
+            "lastName": "Doe",
+            "dateOfBirth": "1980-01-15",
+            "gender": "Male",
+            "admissionDate": "2024-06-01",
+            "dischargeDate": null,
+            "currentBed": "A101"
+        },
+        {
+            "patientId": "P002",
+            "firstName": "Jane",
+            "lastName": "Smith",
+            "dateOfBirth": "1990-05-22",
+            "gender": "Female",
+            "admissionDate": "2024-06-03",
+            "dischargeDate": null,
+            "currentBed": "B202"
+        },
+        {
+            "patientId": "P003",
+            "firstName": "Alice",
+            "lastName": "Johnson",
+            "dateOfBirth": "1975-07-30",
+            "gender": "Female",
+            "admissionDate": "2024-06-02",
+            "dischargeDate": "2024-06-05",
+            "currentBed": "C303"
+        },
+        {
+            "patientId": "P004",
+            "firstName": "Bob",
+            "lastName": "Brown",
+            "dateOfBirth": "1985-11-12",
+            "gender": "Male",
+            "admissionDate": "2024-06-04",
+            "dischargeDate": "2024-06-04",
+            "currentBed": "D404"
+        },
+        {
+            "patientId": "P005",
+            "firstName": "Charlie",
+            "lastName": "Davis",
+            "dateOfBirth": "1995-03-18",
+            "gender": "Male",
+            "admissionDate": "2024-06-02",
+            "dischargeDate": "",
+            "currentBed": "A505"
+        }
+    ]
+}

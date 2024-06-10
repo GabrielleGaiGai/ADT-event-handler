@@ -52,7 +52,7 @@ This simulator covers the following error cases:
 - [x] empty patient ID/First Name/Last Name/Date of Birth/Gender/Admission Date
 - [x] duplicate patient ID/current bed
 - [x] invalid patient attributes:
-    - [x] non-string values for first name / last name
+    - [x] non-alphabetic characters in first name / last name
     - [x] Date of Birth > today
     - [x] Admission Date > today
     - [x] Discharge Date > today

@@ -2,7 +2,7 @@
 
 ## About The Project
 
-#### This system will simulate a healthcare system where a user can view/add/edit/discharge/transfer patients。
+#### This system will simulate a healthcare system where a user can view/add/edit/discharge/transfer patients. The frontend is built with React and the backend is built with Express and Node.js. To preserve data, a JSON file is used.
 
 
 ## Setup instructions
@@ -61,6 +61,7 @@ This simulator covers the following error cases:
     - [x] a patient is active without current bed
     - [x] a patient is discharged with current bed
 - [x] attempt to discharge/transfer a patient who does not exist.
+- [x] attempt to discharge/transfer a patient who is already discharged.
 
 #### If any of the above error cases happens, the UI will display an error message.
 ![error](images/error.png)

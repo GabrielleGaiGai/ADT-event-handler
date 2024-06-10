@@ -23,6 +23,7 @@ const PatientPage = () => {
 
     const readOnly = !location.pathname.includes("edit") && !location.pathname.includes("new")
     const isNew = location.pathname.includes("new")
+    const isDischarged = Boolean(patient?.dischargeDate)
 
     const errorRef = useRef()
     const [errormsg, setErrormsg] = useState(null)
@@ -42,7 +43,7 @@ const PatientPage = () => {
     const [dischargeDate, setDischargeDate] = useState(patient?.dischargeDate || "")
     const [currentBed, setCurrentBed] = useState(patient?.currentBed || "")
 
-    const inputStyle = "w-full rounded-md border border-gray-300 py-3 px-6 text-gray-600 outline-none focus:border-blue-600 focus:shadow-md disabled:bg-white"
+    const inputStyle = "w-full rounded-md border border-gray-300 py-3 px-6 text-gray-600 outline-none focus:border-blue-600 focus:shadow-md"
     const inputSmallStyle = "mb-5 px-3 w-1/2"
     const labelStyle = "mb-3 block text-gray-700"
     const NAME_REGEX = /^[A-z]+$/
@@ -87,27 +88,31 @@ const PatientPage = () => {
             toggleError(true)
         } else {
             if (!isNew) {
-                axios.patch('http://localhost:3500/patients', { patientId, firstName, lastName, dateOfBirth, gender, admissionDate, 
-                    dischargeDate: dischargeDate || null, currentBed: currentBed || null })
-                .then(res => {
-                    const patientsData = res.data;
-                    dispatch(UpdatePatient(patientsData))
-                    navigate("/")
-                }).catch(err => {
-                    setErrormsg(err)
+                axios.patch('http://localhost:3500/patients', {
+                    patientId, firstName, lastName, dateOfBirth, gender, admissionDate,
+                    dischargeDate: dischargeDate || null, currentBed: currentBed || null
                 })
+                    .then(res => {
+                        const patientsData = res.data;
+                        dispatch(UpdatePatient(patientsData))
+                        navigate("/")
+                    }).catch(err => {
+                        setErrormsg(err)
+                    })
             } else {
-                axios.post('http://localhost:3500/patients', { firstName, lastName, dateOfBirth, gender, admissionDate, 
-                    dischargeDate: dischargeDate || null, currentBed: currentBed || null })
-                .then(res => {
-                    const patientsData = res.data;
-                    dispatch(AddPatient(patientsData))
-                    navigate("/")
-                }).catch(err => {
-                    setErrormsg(err)
+                axios.post('http://localhost:3500/patients', {
+                    firstName, lastName, dateOfBirth, gender, admissionDate,
+                    dischargeDate: dischargeDate || null, currentBed: currentBed || null
                 })
+                    .then(res => {
+                        const patientsData = res.data;
+                        dispatch(AddPatient(patientsData))
+                        navigate("/")
+                    }).catch(err => {
+                        setErrormsg(err)
+                    })
             }
-            
+
         }
     }
 
@@ -135,7 +140,7 @@ const PatientPage = () => {
                         <label htmlFor="name" className={labelStyle}>
                             Patient ID
                         </label>
-                        <input type="text" name="name" id="name" value={patientId} disabled className={inputStyle + " disabled:bg-gray-100"} />
+                        <input type="text" name="name" id="name" value={patientId} disabled className={inputStyle} />
                     </div>
 
                     <div className="-mx-3 flex flex-wrap">
@@ -158,7 +163,7 @@ const PatientPage = () => {
                                 Gender
                             </label>
                             <select name="gender" id="gender" value={gender} disabled={readOnly} required onChange={e => { setGender(e.target.value) }}
-                                className={inputStyle + " disabled:text-black"} >
+                                className={inputStyle + " disabled:text-black disabled:bg-[#F5F5F5]"} >
                                 <option value="male" >Male</option>
                                 <option value="female">Female</option>
                                 <option value="other">Other</option>
@@ -182,7 +187,7 @@ const PatientPage = () => {
                             <label htmlFor="dischargeDate" className={labelStyle}>
                                 Discharge Date
                             </label>
-                            <input type="date" name="dischargeDate" id="dischargeDate" className={inputStyle} value={dischargeDate} disabled={readOnly}
+                            <input type="date" name="dischargeDate" id="dischargeDate" className={inputStyle} value={dischargeDate} disabled={readOnly || isDischarged}
                                 onChange={e => { setDischargeDate(e.target.value) }} />
                         </div>
                     </div>
@@ -191,7 +196,7 @@ const PatientPage = () => {
                         <label htmlFor="currentBed" className={labelStyle}>
                             Current Bed
                         </label>
-                        <input type="text" name="currentBed" id="currentBed" value={currentBed} disabled={readOnly} className={inputStyle}
+                        <input type="text" name="currentBed" id="currentBed" value={currentBed} disabled={readOnly || isDischarged} className={inputStyle}
                             onChange={e => { setCurrentBed(e.target.value) }} />
                     </div>
 

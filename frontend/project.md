@@ -29,19 +29,19 @@
 - [x] Implement basic error handling to manage invalid inputs or actions, such as attempting to discharge a non-existent patient.
 
 # Deliverables
-- [ ] Source code, including: JavaScript, HTML/CSS files, package.json
-- [ ] README file with: Setup instructions, Description of the project, Instructions on how to use the system
+- [x] Source code, including: JavaScript, HTML/CSS files, package.json
+- [x] README file with: Setup instructions, Description of the project, Instructions on how to use the system
 
 # Error cases:
 - [x] empty patient attributes: patient ID, First Name, Last Name, Date of Birth, Gender, Admission Date (frontend)
 - [x] duplicate patient attributes: patient ID, current bed (frontend)
 - [x] invalid patient attributes: (frontend)
-    - [x]: non-string values for first name / last name
-    - [x]: Date of Birth > today
-    - [x]: Admission Date > today
-    - [x]: Discharge Date > today
-    - [x]: Admission Date > Discharge Date 
-    - [x]: Date of Birth > Admission Date 
-    - [x]: both current bed and Discharge Date are null
-    - [x]: both current bed and Discharge Date are not null
+    - [x] non-string values for first name / last name
+    - [x] Date of Birth > today
+    - [x] Admission Date > today
+    - [x] Discharge Date > today
+    - [x] Admission Date > Discharge Date 
+    - [x] Date of Birth > Admission Date 
+    - [x] both current bed and Discharge Date are null
+    - [x] both current bed and Discharge Date are not null
 - [x] attempt to discharge/transfer a patient who does not exist. (backend)

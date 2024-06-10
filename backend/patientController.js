@@ -16,13 +16,20 @@ const getAllPatients = asyncHandler(async (req, res) => {
 const addPatient = asyncHandler(async (req, res) => {
     const { firstName, lastName, dateOfBirth, gender, admissionDate, dischargeDate, currentBed } = req.body
     const patientId = uuidv4()
-    const patient = JSON.stringify({ patientId, firstName, lastName, dateOfBirth, gender, admissionDate, dischargeDate, currentBed })
-    fs.appendFile("./patients.json", patient, (error) => {
+    const patient = { patientId, firstName, lastName, dateOfBirth, gender, admissionDate, dischargeDate, currentBed }
+
+    fs.readFile("./patients.json", (error, data) => {
         if (error) {
             return res.status(400).json({ message: error })
         }
+        const patients = [...JSON.parse(data).patients, patient];
 
-        res.json(patient)
+        fs.writeFile("./patients.json", JSON.stringify({ patients }), (error) => {
+            if (error) {
+                return res.status(400).json({ message: error })
+            }
+            res.json(patient)
+        })
     })
 })
 

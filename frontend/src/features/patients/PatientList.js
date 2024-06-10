@@ -1,25 +1,29 @@
 import axios from 'axios';
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { useEffect } from "react"
-import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { selectAllPatientIds, SetPatients } from "../../app/patientSlice"
 import PatientRow from "./PatientRow"
 
 const PatientList = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    var patientIds = useSelector((state) => selectAllPatientIds(state))
 
     useEffect(() => {
-        axios.get('http://localhost:3500/patients')
-            .then(res => {
-                const patientsData = res.data;
-                dispatch(SetPatients(patientsData))
-            }).catch(err => {
-                console.log(err)
-            })
-    }, [])
-
-    const patientIds = useSelector((state) => selectAllPatientIds(state))
+        if (!patientIds.length) {
+            axios.get('http://localhost:3500/patients')
+                .then(res => {
+                    const patientsData = res.data;
+                    dispatch(SetPatients(patientsData))
+                }).catch(err => {
+                    console.log(err)
+                })
+        }
+        // eslint-disable-next-line
+    }, [dispatch])
 
     const header_attributes = ["First Name", "Last Name", "Gender", "Status", "Current Bed", "Discharge Date", ""]
     const header = header_attributes.map((attr) =>
@@ -32,7 +36,14 @@ const PatientList = () => {
 
     return (
         <div className="grid grid-cols-1 justify-items-center mt-20">
-            <h1 className="text-3xl mb-5 text-gray-800">Patients</h1>
+            <button className="absolute right-[15%] top-[4.5rem] rounded-md bg-blue-700 py-3 px-8 text-center font-semibold text-white outline-none hover:bg-blue-400"
+                onClick={() => navigate("/new")}>
+                Add New Patient
+            </button>
+            <h1 className="mb-7 text-3xl text-gray-800">
+                Patients
+            </h1>
+
             <div className="w-3/4 bg-white overflow-auto">
                 <table className="min-w-full text-base font-medium text-center">
                     <thead>

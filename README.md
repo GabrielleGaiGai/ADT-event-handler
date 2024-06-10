@@ -2,7 +2,7 @@
 
 ## About The Project
 
-#### This system will simulate a healthcare system where a user can view/add/edit/discharge/transfer patients. The frontend is built with React and the backend is built with Express and Node.js. To preserve data, a JSON file is used.
+#### This system will simulate a healthcare system where a user can view/add/edit/discharge/transfer patients. The frontend is built with React and Tailwind. The backend is built with Express and Node.js. To preserve data, a JSON file is used.
 
 
 ## Setup instructions
@@ -52,7 +52,7 @@ This simulator covers the following error cases:
 - [x] empty patient ID/First Name/Last Name/Date of Birth/Gender/Admission Date
 - [x] duplicate patient ID/current bed
 - [x] invalid patient attributes:
-    - [x] non-string values for first name / last name
+    - [x] non-alphabetic characters in first name / last name
     - [x] Date of Birth > today
     - [x] Admission Date > today
     - [x] Discharge Date > today
@@ -75,10 +75,12 @@ This simulator covers the following error cases:
 ![Express][ExpressUrl]
 ![Redux][ReduxUrl]
 ![MUI][MUIUrl]
+![Tailwind][TailwindUrl]
 
 [ReactUrl]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [NodeUrl]: https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white
 [ExpressUrl]: https://img.shields.io/badge/Express.js-404D59?style=for-the-badge
 [ReduxUrl]: https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white
 [MUIUrl]: https://img.shields.io/badge/Material--UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white
+[TailwindUrl]: https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
 

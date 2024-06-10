@@ -18,8 +18,6 @@ import { faEllipsisVertical, faAnglesRight, faArrowRightFromBracket, faRightLeft
 
 import { selectPatientById, selectAllBeds, UpdatePatient } from "../../app/patientSlice";
 
-import "./Patient.css"
-
 const PatientRow = ({ patientId }) => {
     const patient = useSelector((state) => selectPatientById(state, patientId))
     var bedList = useSelector((state) => selectAllBeds(state))
